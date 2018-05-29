@@ -241,6 +241,12 @@
                     <option th:each="city : ${cities}" th:value="${city.name}" th:text="${city.name}"></option>
                 </select>
             </li>
+            <li>
+                <select class="btn btn-default" id="countryDropdown" onchange="filterDataTable()">
+                    <option value="All countries">All countries</option>
+                    <option th:each="country : ${countries}" th:value="${country.name}" th:text="${country.name}"></option>
+                </select>
+            </li>
         </ul>
     </div>
     <div id="block1">

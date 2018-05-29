@@ -37,6 +37,7 @@ public class RestaurantController {
     private RestaurantService restaurantService;
     private CategoryService categoryService;
     private CityService cityService;
+    private CountryService countryService;
     private PhotoService photoService;
     private UserLikesService userLikesService;
     private UserService userService;
@@ -54,6 +55,11 @@ public class RestaurantController {
     @Autowired
     public void setCityService(CityService cityService) {
         this.cityService = cityService;
+    }
+
+    @Autowired
+    public void setCountryService(CountryService countryService) {
+        this.countryService = countryService;
     }
 
     @Autowired
@@ -81,6 +87,7 @@ public class RestaurantController {
     public String newRestaurant(Model model) {
         model.addAttribute("restaurantCategories", categoryService.listAllCategories());
         model.addAttribute("cities", cityService.listAllCities());
+        model.addAttribute("countries", countryService.listAllCountries());
         model.addAttribute("restaurant", new Restaurant());
         return "newRestaurant";
     }
@@ -182,8 +189,6 @@ public class RestaurantController {
             model.addAttribute("comment", new Comment(restaurant, user));
             boolean userCommented = restaurantService.alreadyCommented(user.getId(),restaurant.getId());
             model.addAttribute("userCommented",userCommented);
-
-
         }
         model.addAttribute("isLiked", isLiked);
         model.addAttribute("logged", logged);
